@@ -51,6 +51,7 @@ def transform(data1):
     
     processed_data_path = os.path.join('data', 'processed', 'cleaned_data.csv')
     cleaned_data.to_csv(processed_data_path, index=False)
+    return cleaned_data
     
 if __name__ == "__main__":
     csv_path = "https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD"
