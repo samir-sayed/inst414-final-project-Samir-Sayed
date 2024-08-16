@@ -1,0 +1,6 @@
+attribute_name,description,data_type,example_vaue,unit
+Sex,Sex of individual,String,M,n/a
+Area,Area inside LA,String,Central,n/a
+Age,Age iof individual,Integer,26,Years
+Time,Time of crime,Integer,1500,Hours(24 hour clock)
+Crime Desc,Crime that was commited,String,THEFT OF INDENTITY,n/a
