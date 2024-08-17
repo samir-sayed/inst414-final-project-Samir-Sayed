@@ -3,6 +3,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
+
+
+def create_directory(path):
+    """Create directory if it does not exist."""
+    if not os.path.exists(path):
+        os.makedirs(path)
+        
+        
 def clean_data(data1):
     print(data1.isnull().mean() * 100)  # Check NaN distribution
 
@@ -53,14 +61,18 @@ def perform_eda(data1):
 
 def transform(data1):
     print(f"Initial data rows: {data1.shape[0]}")  #check for how many rows are in the initial dataset
-    print(f"Cleaned data rows: {cleaned_data.shape[0]}")  # check after cleaning
+    #print(f"Cleaned data rows: {cleaned_data.shape[0]}")  # check after cleaning
 
-    perform_eda(cleaned_data)
+    data1 = clean_data(data1)
+    
+    
+    processed_data_dir = 'data/processed'
+    create_directory(processed_data_dir)
 
-    processed_data_path = os.path.join('data', 'processed', 'cleaned_data.csv')
-    cleaned_data.to_csv(processed_data_path, index=False)
-    print(f"Data saved to {processed_data_path} with {cleaned_data.shape[0]} rows.")  #logging to show data as been saved
-    return cleaned_data
+    processed_data_path = os.path.join(processed_data_dir, 'cleaned_data.csv')
+    data1.to_csv(processed_data_path, index=False)
+    print(f"Data saved to {processed_data_path} with {data1.shape[0]} rows.")  #logging to show data as been saved
+    return data1
     
     
     
@@ -71,8 +83,8 @@ if __name__ == "__main__":
     csv_path = "https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD"
     data1 = pd.read_csv(csv_path)
     
-    cleaned_data = transform(data1)
-    if cleaned_data is not None:
-            print(cleaned_data.head())
+    data1 = transform(data1)
+    if data1 is not None:
+            print(data1.head())
     else:
         print(f"File {csv_path} does not exist.") #failsafe
