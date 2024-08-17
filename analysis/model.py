@@ -5,9 +5,9 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
-def train_model(cleaned_data):
+def train_model(data1):
     #drop rows with missing values in columns of interest
-    cleaned_data = cleaned_data.dropna(subset=['TIME OCC', 'Crm Cd Desc', 'Vict Age', 'AREA NAME'])
+    cleaned_data = data1.dropna(subset=['TIME OCC', 'Crm Cd Desc', 'Vict Age', 'AREA NAME'])
 
     #encoding for cateorical features
     label_encode_crm = LabelEncoder()
@@ -41,7 +41,6 @@ def train_model(cleaned_data):
     plt.ylabel('Predicted TIME OCC')
     plt.title('Actual vs Predicted TIME OCC')
     plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)  # Diagonal line
-    
     plt.show()
 
     return model, X_test, y_test
