@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 def create_directory(path):
-    """Create directory if it does not exist."""
+    
     if not os.path.exists(path):
         os.makedirs(path)
         
